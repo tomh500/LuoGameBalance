@@ -1,6 +1,7 @@
 package cn.luotiany1.luogamebalance;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.Material;
 
 public final class BalanceConfig {
     private final LuoGameBalancePlugin plugin;
@@ -19,5 +20,9 @@ public final class BalanceConfig {
         if (!experimental(feature)) return Math.max(0, stable);
         return Math.max(0, c().getInt("experimental." + feature + ".base-xp", stable) * Math.max(1, units));
     }
-    public double deathRatio() { return experimental("death") ? c().getDouble("experimental.death.retain-ratio", .5) : c().getDouble("stable.death-xp-retain-ratio", 1); }
+    public double deathRatio() { return Math.clamp(experimental("death") ? c().getDouble("experimental.death.retain-ratio", .5) : c().getDouble("stable.death-xp-retain-ratio", 1), 0, 1); }
+    public Material upgradeTemplate() {
+        String key = c().getString("experimental.upgrade.template", "NETHERITE_UPGRADE_SMITHING_TEMPLATE");
+        try { return Material.valueOf(key); } catch (IllegalArgumentException e) { plugin.getLogger().warning("Invalid experimental upgrade template: " + key); return Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE; }
+    }
 }

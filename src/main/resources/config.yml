@@ -1,19 +1,34 @@
+# 语言文件名称；可选 zh_CN 或 en_US。重载后生效。
 locale: zh_CN
+
+# 是否默认将右键工作站替换为 LuoGameBalance GUI。
 gui:
   anvil-overlay-default: true
   smithing-overlay-default: true
+
+# 稳定玩法的原始经验点成本（非经验等级）。必须为 0 或正整数。
 stable:
   costs:
-    extract: 7
-    split-per-enchantment: 7
-    merge-per-enchantment: 7
-    repair: 35
-    upgrade: 35
+    extract: 7                 # 提取整件物品附魔
+    split-per-enchantment: 7   # 每本拆分出的附魔书
+    merge-per-enchantment: 7   # 每个合并的附魔
+    repair: 35                 # 完全修复一次
+    upgrade: 35                # 阶梯升级一次
+  # 死亡后返还的原始经验点比例，范围 0.0 到 1.0。
   death-xp-retain-ratio: 1.0
+
+# 实验规则默认全部关闭。启用后会覆盖对应稳定成本或规则。
 experimental:
   extract: { enabled: false, base-xp: 15 }
   split: { enabled: false, base-xp: 10 }
   merge: { enabled: false, base-xp: 8 }
   repair: { enabled: false, base-xp: 20 }
-  upgrade: { enabled: false, base-xp: 30 }
-  death: { enabled: false, retain-ratio: 0.5 }
+  upgrade:
+    enabled: false
+    base-xp: 30
+    # 开启实验升级时，玩家背包必须持有此模板；模板不会被消耗。
+    template: NETHERITE_UPGRADE_SMITHING_TEMPLATE
+  death:
+    enabled: false
+    # 实验死亡规则的返还比例，范围 0.0 到 1.0。
+    retain-ratio: 0.5

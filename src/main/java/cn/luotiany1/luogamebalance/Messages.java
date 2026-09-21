@@ -2,6 +2,7 @@ package cn.luotiany1.luogamebalance;
 
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -18,5 +19,9 @@ public final class Messages {
     public String get(String key, Object... values) {
         String text = data.getString(key, key);
         return ChatColor.translateAlternateColorCodes('&', data.getString("prefix", "") + String.format(text, values));
+    }
+    public String plain(String key, Object... values) { return ChatColor.translateAlternateColorCodes('&', String.format(data.getString(key, key), values)); }
+    public List<String> list(String key, Object... values) {
+        return data.getStringList(key).stream().map(x -> ChatColor.translateAlternateColorCodes('&', String.format(x, values))).toList();
     }
 }

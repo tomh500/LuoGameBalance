@@ -16,6 +16,8 @@ inventory-full: '&cNot enough inventory space; no change was made.'
 success: '&aSuccess. Spent %s experience points.'
 native-ready: '&aThe next use will open the native %s UI.'
 gui:
+  anvil-name: 'anvil'
+  smithing-name: 'smithing table'
   anvil-title: '&6LuoGameBalance: Anvil'
   smithing-title: '&6LuoGameBalance: Smithing'
   confirm: '&aConfirm'

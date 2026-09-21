@@ -46,7 +46,7 @@ public final class BalanceListener implements Listener {
         int raw = e.getRawSlot(); if (raw < 0 || raw >= 9) return;
         if (raw == 0 || raw == 1) { Bukkit.getScheduler().runTask(plugin, () -> refresh((Player) e.getWhoClicked(), e.getView().getTopInventory(), h.kind())); return; }
         e.setCancelled(true); Player p = (Player) e.getWhoClicked(); Inventory inv = e.getView().getTopInventory();
-        if (raw == 8) { plugin.allowNativeOnce(p.getUniqueId(), h.kind()); plugin.tell(p, "native-ready", h.kind() == GuiHolder.Kind.ANVIL ? "铁砧" : "锻造台"); p.closeInventory(); return; }
+        if (raw == 8) { plugin.allowNativeOnce(p.getUniqueId(), h.kind()); plugin.tell(p, "native-ready", plugin.plainMessage(h.kind() == GuiHolder.Kind.ANVIL ? "gui.anvil-name" : "gui.smithing-name")); p.closeInventory(); return; }
         if (h.kind() == GuiHolder.Kind.ANVIL && raw == 5) { plugin.service().extract(p, inv.getItem(0)); return; }
         if (h.kind() == GuiHolder.Kind.ANVIL && raw == 6) { if (plugin.service().split(p, inv.getItem(0))) inv.setItem(0, null); return; }
         if (raw != 2) return;

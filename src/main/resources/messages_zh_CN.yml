@@ -16,6 +16,8 @@ inventory-full: '&c背包没有足够空间，操作未执行，物品和经验�
 success: '&a操作成功，消耗 %s 点经验。'
 native-ready: '&a已允许下一次使用原版 %s 界面。'
 gui:
+  anvil-name: '铁砧'
+  smithing-name: '锻造台'
   anvil-title: '&6洛游戏平衡：铁砧'
   smithing-title: '&6洛游戏平衡：锻造'
   confirm: '&a确认操作'

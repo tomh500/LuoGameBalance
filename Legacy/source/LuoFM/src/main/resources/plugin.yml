@@ -1,0 +1,10 @@
+name: SuperFM
+version: 1.0
+api-version: 1.20.1
+main: cn.luotiany1.superfm.main
+commands:
+  lfm:
+    description: 用于管理 SuperFM 插件
+    usage: /lfm <open|select|divi|overlay|fopen|foverlay|reload|preload>
+    permission: superfm.command.lfm
+    permission-message: 你没有权限使用该命令。

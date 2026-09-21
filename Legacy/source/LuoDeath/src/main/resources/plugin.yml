@@ -1,0 +1,9 @@
+name: LuoDeath
+main: cn.luotiany1.luodeath.LuoDeath
+version: 1.0
+api-version: 1.20
+commands:
+  Luodeath:
+    description: Reload LuoDeath插件的配置
+    aliases: [ld]
+    usage: /<command> reload

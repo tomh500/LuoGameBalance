@@ -1,0 +1,14 @@
+# 当玩家在 /lfm open 的GUI中点击第三个格子时，每个已有魔咒扣除的经验等级系数
+open_experience_cost: 1.0
+
+# /lfm select 提取附魔时扣除的经验值
+select_experience_cost: 1.0
+
+# /lfm divi 分解附魔书时扣除的经验值
+divi_experience_cost: 1.0
+
+# overlay 的默认状态（true=打开SuperFM GUI，false=原版铁砧GUI）
+overlay_default: true
+
+#foverlay
+foverlay_default: true

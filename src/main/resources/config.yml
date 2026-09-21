@@ -1,0 +1,19 @@
+locale: zh_CN
+gui:
+  anvil-overlay-default: true
+  smithing-overlay-default: true
+stable:
+  costs:
+    extract: 7
+    split-per-enchantment: 7
+    merge-per-enchantment: 7
+    repair: 35
+    upgrade: 35
+  death-xp-retain-ratio: 1.0
+experimental:
+  extract: { enabled: false, base-xp: 15 }
+  split: { enabled: false, base-xp: 10 }
+  merge: { enabled: false, base-xp: 8 }
+  repair: { enabled: false, base-xp: 20 }
+  upgrade: { enabled: false, base-xp: 30 }
+  death: { enabled: false, retain-ratio: 0.5 }

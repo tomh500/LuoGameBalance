@@ -1,0 +1,14 @@
+name: LuoGameBalance
+version: 1.0.0
+main: cn.luotiany1.luogamebalance.LuoGameBalancePlugin
+api-version: '26.2'
+commands:
+  luobalance:
+    aliases: [lgb]
+    description: LuoGameBalance command
+    usage: /luobalance <anvil|smithing|extract|split|mode|status|reload|experimental>
+permissions:
+  luogamebalance.use.*:
+    default: true
+  luogamebalance.admin.*:
+    default: op

@@ -1,0 +1,2 @@
+# multiplier取值范围在 0~1，表示百分比。例如0.2代表20%。
+multiplier: 1

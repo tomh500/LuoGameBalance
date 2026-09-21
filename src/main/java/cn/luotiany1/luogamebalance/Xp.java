@@ -1,6 +1,7 @@
 package cn.luotiany1.luogamebalance;
 
 import org.bukkit.entity.Player;
+import org.bukkit.GameMode;
 
 public final class Xp {
     private Xp() {}
@@ -22,9 +23,14 @@ public final class Xp {
     }
 
     public static boolean take(Player p, int amount) {
-        if (amount < 0 || total(p) < amount) return false;
+        if (!canPay(p, amount)) return false;
+        if (p.getGameMode() == GameMode.CREATIVE) return true;
         set(p, total(p) - amount);
         return true;
+    }
+
+    public static boolean canPay(Player p, int amount) {
+        return amount >= 0 && (p.getGameMode() == GameMode.CREATIVE || total(p) >= amount);
     }
 
     public static void set(Player p, int amount) {

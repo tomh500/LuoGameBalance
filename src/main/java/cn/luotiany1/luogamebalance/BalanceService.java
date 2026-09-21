@@ -31,7 +31,7 @@ public final class BalanceService {
         if (p.getInventory().first(Material.BOOK) < 0) { plugin.tell(p, "need-book"); return; }
         if (!give(p, List.of(new ItemStack(Material.ENCHANTED_BOOK)))) return;
         int cost = plugin.config().cost("extract", item.getEnchantments().size());
-        if (Xp.total(p) < cost) { plugin.tell(p, "not-enough-xp", cost, Xp.total(p)); return; }
+        if (!Xp.canPay(p, cost)) { plugin.tell(p, "not-enough-xp", cost, Xp.total(p)); return; }
         ItemStack book = new ItemStack(Material.ENCHANTED_BOOK);
         EnchantmentStorageMeta meta = (EnchantmentStorageMeta) book.getItemMeta();
         item.getEnchantments().forEach((e, level) -> meta.addStoredEnchant(e, level, false));
@@ -59,7 +59,7 @@ public final class BalanceService {
         }
         int cost = plugin.config().cost("split", n);
         if (books < n) { plugin.tell(p, "need-more-books", n, books); return false; }
-        if (Xp.total(p) < cost) { plugin.tell(p, "not-enough-xp", cost, Xp.total(p)); return false; }
+        if (!Xp.canPay(p, cost)) { plugin.tell(p, "not-enough-xp", cost, Xp.total(p)); return false; }
         if (!give(p, out)) return false;
         consume(p, Material.BOOK, n); item.setAmount(0); Xp.take(p, cost); out.forEach(x -> p.getInventory().addItem(x)); plugin.tell(p, "success", cost); return true;
     }
@@ -71,14 +71,14 @@ public final class BalanceService {
         ItemStack result = first.clone();
         for (Map.Entry<Enchantment, Integer> e : add.entrySet()) if (!safeAdd(result, e.getKey(), e.getValue())) { plugin.tell(p, "invalid-item"); return null; }
         int cost = plugin.config().cost("merge", add.size());
-        if (Xp.total(p) < cost) { plugin.tell(p, "not-enough-xp", cost, Xp.total(p)); return null; }
+        if (!Xp.canPay(p, cost)) { plugin.tell(p, "not-enough-xp", cost, Xp.total(p)); return null; }
         setDamage(result, Math.max(0, damage(first) + damage(second) - first.getType().getMaxDurability() / 8));
         Xp.take(p, cost); plugin.tell(p, "success", cost); return result;
     }
 
     public boolean repair(Player p, ItemStack tool, Material material) {
         if (tool == null || tool.getType().isAir() || !repairMaterial(tool.getType()).equals(material)) { plugin.tell(p, "invalid-item"); return false; }
-        int cost = plugin.config().cost("repair", 1); if (Xp.total(p) < cost) { plugin.tell(p, "not-enough-xp", cost, Xp.total(p)); return false; }
+        int cost = plugin.config().cost("repair", 1); if (!Xp.canPay(p, cost)) { plugin.tell(p, "not-enough-xp", cost, Xp.total(p)); return false; }
         setDamage(tool, 0); Xp.take(p, cost); plugin.tell(p, "success", cost); return true;
     }
 

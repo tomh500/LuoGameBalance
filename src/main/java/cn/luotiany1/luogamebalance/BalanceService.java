@@ -36,7 +36,12 @@ public final class BalanceService {
         EnchantmentStorageMeta meta = (EnchantmentStorageMeta) book.getItemMeta();
         item.getEnchantments().forEach((e, level) -> meta.addStoredEnchant(e, level, false));
         book.setItemMeta(meta);
-        for (Enchantment e : new ArrayList<>(item.getEnchantments().keySet())) item.removeEnchantment(e);
+        // Re-apply a clean metadata component rather than only mutating the stack.
+        // Modern servers use this component to decide whether an item is enchantable.
+        ItemMeta cleanMeta = item.getItemMeta();
+        for (Enchantment e : new ArrayList<>(cleanMeta.getEnchants().keySet())) cleanMeta.removeEnchant(e);
+        cleanMeta.setEnchantmentGlintOverride(false);
+        item.setItemMeta(cleanMeta);
         int slot = p.getInventory().first(Material.BOOK);
         ItemStack blank = p.getInventory().getItem(slot);
         blank.setAmount(blank.getAmount() - 1);

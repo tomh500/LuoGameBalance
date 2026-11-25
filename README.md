@@ -50,3 +50,9 @@ mvn -B verify
 - 使用 Java 25 和 Spigot API 26.2。
 - 物品与经验操作必须先完成全部前置校验，再提交变更。
 - 禁止临时赋予 OP 或重载其他插件。
+
+## 许可证
+
+现行 LuoGameBalance 插件的自研源码、资源和测试（`src/`），以及项目构建配置（`pom.xml`）和本说明，采用 `MIT OR Apache-2.0`。使用者可选择 [MIT](LICENSE) 或 [Apache License 2.0](LICENSE-APACHE) 的条款。
+
+[`Legacy/`](Legacy/CONSISTENCY_REPORT.md) 是从历史 JAR 重建的源码和资源归档，保留原有许可与署名。新增的 Apache 2.0 授权仅适用于上述现行项目内容。第三方依赖继续适用各自的许可证与署名。
